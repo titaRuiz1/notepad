@@ -1,6 +1,4 @@
-const notes=["Note1","Note2","Note3","Note4"];
-
-
+const notes=[];
 
 function printNotes(){
     const container=document.querySelector(".notesContainer");
@@ -15,6 +13,7 @@ function printNotes(){
 function createNoteDiv(note, index){
     const div=document.createElement("div");
     div.className="note";
+    div.id="note-" + note.id;
     
     const p=document.createElement("p");
     p.textContent=note.text;
@@ -55,12 +54,11 @@ function createNoteDiv(note, index){
         
     };  
 
-
     const form=document.querySelector("form");
-
     form.addEventListener("submit",function(event){
     event.preventDefault();
     const newNote={
+        id: notes.length + 1,
         text: event.target.elements["newNote"].value,
     }
     notes.push(newNote);
