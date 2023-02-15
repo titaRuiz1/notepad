@@ -13,15 +13,26 @@ function printNotes(){
         const p=document.createElement("p");
         p.textContent=note;
     
-        const button=document.createElement("button");
-        button.textContent="Delete";
+        const deleteButton=document.createElement("button");
+        deleteButton.textContent="Delete";
 
-        button.addEventListener("click",function(event){
+        deleteButton.addEventListener("click",function(event){
             notes.splice(index,1);
             printNotes();
         })
+
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+
+        editButton.addEventListener("click", function (event) {
+        const newNoteText = prompt("Write the new note text:");
+        if (newNoteText) {
+          notes[index] = newNoteText;
+            printNotes();
+      }
+    });
     
-        div.append(p,button);
+        div.append(p,deleteButton, editButton);
         container.append(div);
         
     });  
